@@ -3,8 +3,8 @@
 #define GEN_SUB_64(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0xcb000000|((_flagreq&1)<<29)|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)))
 #define GEN_SBC_64(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0xda000000|((_flagreq&1)<<29)|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)))
 #define GEN_AND_64(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0x8a000000|(((_flagreq&1)*3)<<29)|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)))
-#define GEN_OR_64(_reg1,_reg2,_reg3,_flagreq)  EMIT_JIT_CODE(0xaa000000|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)));if (_flagreq) GEN_AND_32(_reg1,_reg1,_reg1,_flagreq)
-#define GEN_XOR_64(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0xca000000|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)));if (_flagreq) GEN_AND_32(_reg1,_reg1,_reg1,_flagreq)
+#define GEN_OR_64(_reg1,_reg2,_reg3,_flagreq)  EMIT_JIT_CODE(0xaa000000|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)));if (_flagreq) GEN_AND_64(31,_reg1,_reg1,_flagreq)
+#define GEN_XOR_64(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0xca000000|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)));if (_flagreq) GEN_AND_64(31,_reg1,_reg1,_flagreq)
 #define GEN_BIC_64(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0x8a200000|(((_flagreq&1)*3)<<29)|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)))
 
 #define GEN_ADD_32(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0x0b000000|((_flagreq&1)<<29)|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)))
@@ -12,8 +12,8 @@
 #define GEN_SUB_32(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0x4b000000|((_flagreq&1)<<29)|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)))
 #define GEN_SBC_32(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0x5a000000|((_flagreq&1)<<29)|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)))
 #define GEN_AND_32(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0x0a000000|(((_flagreq&1)*3)<<29)|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)))
-#define GEN_OR_32(_reg1,_reg2,_reg3,_flagreq)  EMIT_JIT_CODE(0x2a000000|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)));if (_flagreq) GEN_AND_32(_reg1,_reg1,_reg1,_flagreq)
-#define GEN_XOR_32(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0x4a000000|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)));if (_flagreq) GEN_AND_32(_reg1,_reg1,_reg1,_flagreq)
+#define GEN_OR_32(_reg1,_reg2,_reg3,_flagreq)  EMIT_JIT_CODE(0x2a000000|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)));if (_flagreq) GEN_AND_32(31,_reg1,_reg1,_flagreq)
+#define GEN_XOR_32(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0x4a000000|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)));if (_flagreq) GEN_AND_32(31,_reg1,_reg1,_flagreq)
 #define GEN_BIC_32(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0x0a200000|(((_flagreq&1)*3)<<29)|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)))
 
 #define GEN_ADD_16(_reg1,_reg2,_reg3,_flagreq) EMIT_JIT_CODE(0x0b00a000|((_flagreq&1)<<29)|((_reg1&0x1f)<<(0))|((_reg2&0x1f)<<(5))|((_reg3&0x1f)<<(20)))
